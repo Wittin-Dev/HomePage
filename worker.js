@@ -295,15 +295,15 @@ const HTML = `<!DOCTYPE html>
     <div class="hero-card">
       <div class="hero-inner">
         <h1 class="name">蔚汀Wittin</h1>
-        <p class="tagline">用代码构建世界，用文字记录思考。</p>
+        <p class="tagline">心存迷惘未尝不可，不置可否亦未尝不可</p>
         <a class="btn" href="https://blog.wittin.cc/">进入博客</a>
         <nav class="links">
-          <a href="#">GitHub</a>
+          <a href="https://github.com/Wittin-Dev/HomePage">GitHub</a>
         </nav>
       </div>
     </div>
 
-    <div class="scroll-hint" onclick="document.querySelector('.tools').scrollIntoView({behavior:'smooth'})">
+    <div class="scroll-hint" onclick="var t=document.querySelector('.tools');t.classList.add('visible');t.scrollIntoView({behavior:'smooth'})">
       <span>工具</span>
       <div class="scroll-arrow"></div>
     </div>
@@ -348,7 +348,7 @@ const HTML = `<!DOCTYPE html>
             tools.classList.add('visible');
           }
         });
-      }, { threshold: 0.1 });
+      }, { threshold: 0 });
 
       observer.observe(tools);
     })();
