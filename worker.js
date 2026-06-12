@@ -203,15 +203,6 @@ const HTML = `<!DOCTYPE html>
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1),
-                  transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
-    }
-
-    .tools.visible {
-      opacity: 1;
-      transform: translateY(0);
     }
 
     .tools-card {
@@ -303,7 +294,7 @@ const HTML = `<!DOCTYPE html>
       </div>
     </div>
 
-    <div class="scroll-hint" onclick="var t=document.querySelector('.tools');t.classList.add('visible');t.scrollIntoView({behavior:'smooth'})">
+    <div class="scroll-hint" onclick="document.querySelector('.tools').scrollIntoView({behavior:'smooth'})">
       <span>工具</span>
       <div class="scroll-arrow"></div>
     </div>
@@ -340,18 +331,6 @@ const HTML = `<!DOCTYPE html>
       window.addEventListener('resize', setBg);
     })();
 
-    (function () {
-      var tools = document.getElementById('tools');
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            tools.classList.add('visible');
-          }
-        });
-      }, { threshold: 0 });
-
-      observer.observe(tools);
-    })();
   </script>
 </body>
 </html>`;
