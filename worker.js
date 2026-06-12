@@ -235,23 +235,37 @@ const HTML = `<!DOCTYPE html>
     }
 
     .tool-item {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
       padding: 0.55rem 1.5rem;
-      background: rgba(255, 255, 255, 0.10);
-      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px dashed rgba(255, 255, 255, 0.20);
       border-radius: 8px;
-      color: rgba(255, 255, 255, 0.78);
+      color: rgba(255, 255, 255, 0.55);
       font-size: 0.82rem;
       font-weight: 600;
       text-decoration: none;
       letter-spacing: 0.04em;
+      cursor: default;
+      position: relative;
       transition: all 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
     }
 
+    .tool-item .soon-badge {
+      font-size: 0.6rem;
+      font-weight: 500;
+      background: rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.6);
+      padding: 2px 8px;
+      border-radius: 10px;
+      letter-spacing: 0.08em;
+    }
+
     .tool-item:hover {
-      background: rgba(255, 255, 255, 0.22);
-      border-color: rgba(255, 255, 255, 0.45);
-      color: #fff;
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.35);
+      color: rgba(255, 255, 255, 0.85);
     }
 
     /* ========== 共用动画 ========== */
@@ -304,10 +318,10 @@ const HTML = `<!DOCTYPE html>
     <div class="tools-card">
       <div class="tools-inner">
         <span class="tools-label">工具</span>
-        <a class="tool-item" href="#">JSON 格式化</a>
-        <a class="tool-item" href="#">Base64 编解码</a>
-        <a class="tool-item" href="#">二维码生成</a>
-        <a class="tool-item" href="#">时间戳转换</a>
+        <span class="tool-item">JSON 格式化 <span class="soon-badge">即将上线</span></span>
+        <span class="tool-item">Base64 编解码 <span class="soon-badge">即将上线</span></span>
+        <span class="tool-item">二维码生成 <span class="soon-badge">即将上线</span></span>
+        <span class="tool-item">时间戳转换 <span class="soon-badge">即将上线</span></span>
       </div>
     </div>
   </section>
