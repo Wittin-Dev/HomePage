@@ -1,0 +1,10 @@
+.superpowers/
+.vscode/
+node_modules/
+.wrangler/
+.DS_Store
+Thumbs.db
+index.html
+/Background1.png
+/Background2.png
+/favicon.ico
