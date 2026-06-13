@@ -1,4 +1,4 @@
-name = "wittin-nav"
+name = "homepage"
 main = "worker.js"
 compatibility_date = "2025-06-01"
 
