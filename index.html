@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>蔚汀Wittin - 导航页</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: #fff;
+      text-align: center;
+      background: url('Background1.avif') center / cover no-repeat fixed;
+      transition: background-image 0.5s ease;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      z-index: 0;
+      pointer-events: none;
+      transition: background 0.5s ease;
+    }
+
+    @media (max-width: 768px) {
+      body { background-image: url('Background2.avif'); }
+      body::before { background: rgba(0, 0, 0, 0.40); }
+    }
+
+    /* ========== Hero ========== */
+    .hero {
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 30px;
+    }
+
+    .hero-card {
+      transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+    .hero-card:hover {
+      transform: scale(1.04);
+    }
+
+    .hero-inner {
+      background: rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border-radius: 16px;
+      padding: 48px 56px;
+      animation: heroIn 1s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+    }
+
+    @keyframes heroIn {
+      from { opacity: 0; transform: translateY(30px) scale(0.96); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* ====== 名字 ====== */
+    .name {
+      font-size: 3.5rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.6rem;
+      line-height: 1.2;
+      animation: nameGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes nameGlow {
+      0%, 100% { text-shadow: 0 0 0 rgba(255,255,255,0); }
+      50%      { text-shadow: 0 0 28px rgba(255,255,255,0.16); }
+    }
+
+    /* ====== 签名 ====== */
+    .tagline {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.75);
+      margin-bottom: 2.8rem;
+      letter-spacing: 0.05em;
+      animation: fadeUp 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.30s both;
+    }
+
+    /* ====== 按钮 ====== */
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 2.6rem;
+      border: 2px solid rgba(255, 255, 255, 0.85);
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      border-radius: 28px;
+      transition: all 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+      background: transparent;
+      cursor: pointer;
+      animation: fadeUp 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.50s both,
+                 btnPulse 2.8s ease-in-out 1.8s infinite;
+    }
+
+    .btn:hover {
+      background: #fff;
+      color: #1a1a1a;
+      border-color: #fff;
+    }
+
+    @keyframes btnPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+      50%      { box-shadow: 0 0 22px 6px rgba(255,255,255,0.10); }
+    }
+
+    /* ====== 社交链接 ====== */
+    .links {
+      display: flex;
+      gap: 1.8rem;
+      margin-top: 3rem;
+      justify-content: center;
+    }
+
+    .links a {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.55);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      position: relative;
+      transition: color 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+      animation: fadeUp 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) 0.65s both;
+    }
+
+    .links a::after {
+      content: '';
+      position: absolute;
+      left: 50%; bottom: -4px;
+      width: 0;
+      height: 1.5px;
+      background: #fff;
+      transition: width 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+      transform: translateX(-50%);
+    }
+    .links a:hover { color: #fff; }
+    .links a:hover::after { width: 100%; }
+
+    /* ========== 共用动画 ========== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ========== 响应式 ========== */
+    @media (max-width: 768px) {
+      .hero-inner { padding: 36px 32px; }
+      .name  { font-size: 2.5rem; }
+      .tagline { font-size: 0.95rem; margin-bottom: 2.2rem; }
+      .btn   { padding: 0.65rem 2.2rem; font-size: 0.9rem; }
+      .links { gap: 1.4rem; margin-top: 2.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-inner { padding: 28px 22px; border-radius: 12px; }
+      .name  { font-size: 2rem; }
+      .tagline { font-size: 0.85rem; }
+      .links { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- 首屏 Hero -->
+  <section class="hero">
+    <div class="hero-card">
+      <div class="hero-inner">
+        <h1 class="name">蔚汀Wittin</h1>
+        <p class="tagline">心存迷惘未尝不可，不置可否亦未尝不可</p>
+        <a class="btn" href="https://blog.wittin.cc/">进入博客</a>
+        <nav class="links">
+          <a href="https://github.com/Wittin-Dev/HomePage">GitHub</a>
+        </nav>
+      </div>
+    </div>
+
+  </section>
+
+  <script>
+    // 背景图设备切换
+    (function () {
+      var bg = document.createElement('div');
+      bg.style.position = 'fixed';
+      bg.style.inset = '0';
+      bg.style.zIndex = '-1';
+      bg.style.pointerEvents = 'none';
+      bg.style.transition = 'opacity 0.5s ease';
+
+      function setBg() {
+        var isMobile = window.innerWidth <= 768;
+        bg.style.background = 'url(\'' + (isMobile ? 'Background2.png' : 'Background1.png') + '\') center / cover no-repeat fixed';
+      }
+
+      setBg();
+      document.body.prepend(bg);
+      window.addEventListener('resize', setBg);
+    })();
+  </script>
+</body>
+</html>
