@@ -8,8 +8,6 @@ const HTML = `<!DOCTYPE html>
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-    html { scroll-behavior: smooth; }
-
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
       color: #fff;
@@ -35,7 +33,6 @@ const HTML = `<!DOCTYPE html>
 
     /* ========== Hero ========== */
     .hero {
-      position: relative;
       z-index: 1;
       min-height: 100vh;
       display: flex;
@@ -152,122 +149,6 @@ const HTML = `<!DOCTYPE html>
     .links a:hover { color: #fff; }
     .links a:hover::after { width: 100%; }
 
-    /* ========== 下滑箭头 ========== */
-    .scroll-hint {
-      position: absolute;
-      bottom: 36px;
-      left: 50%;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-      animation: hintIn 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 1.2s both;
-    }
-
-    @keyframes hintIn {
-      from { opacity: 0; transform: translateX(-50%) translateY(14px); }
-      to   { opacity: 1; transform: translateX(-50%) translateY(0); }
-    }
-
-    .scroll-hint span {
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      color: rgba(255, 255, 255, 0.55);
-      text-align: center;
-    }
-
-    .scroll-arrow {
-      width: 20px;
-      height: 20px;
-      border-right: 2px solid rgba(255, 255, 255, 0.55);
-      border-bottom: 2px solid rgba(255, 255, 255, 0.55);
-      transform: rotate(45deg);
-      animation: arrowBreath 2.2s ease-in-out infinite;
-    }
-
-    @keyframes arrowBreath {
-      0%, 100% { opacity: 0.18; }
-      50%      { opacity: 0.72; }
-    }
-
-    /* ========== 工具栏 ========== */
-    .tools {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      padding: 60px 30px 80px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .tools-card {
-      transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
-    }
-    .tools-card:hover {
-      transform: scale(1.04);
-    }
-
-    .tools-inner {
-      background: rgba(0, 0, 0, 0.30);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      border-radius: 16px;
-      padding: 28px 36px;
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .tools-label {
-      width: 100%;
-      font-size: 1rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      color: rgb(255, 255, 255);
-      margin-bottom: 10px;
-      text-align: center;
-    }
-
-    .tool-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.55rem 1.5rem;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px dashed rgba(255, 255, 255, 0.20);
-      border-radius: 8px;
-      color: rgba(255, 255, 255, 0.55);
-      font-size: 0.82rem;
-      font-weight: 600;
-      text-decoration: none;
-      letter-spacing: 0.04em;
-      cursor: default;
-      position: relative;
-      transition: all 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
-    }
-
-    .tool-item .soon-badge {
-      font-size: 0.6rem;
-      font-weight: 500;
-      background: rgba(255, 255, 255, 0.12);
-      color: rgba(255, 255, 255, 0.6);
-      padding: 2px 8px;
-      border-radius: 10px;
-      letter-spacing: 0.08em;
-    }
-
-    .tool-item:hover {
-      background: rgba(255, 255, 255, 0.12);
-      border-color: rgba(255, 255, 255, 0.35);
-      color: rgba(255, 255, 255, 0.85);
-    }
-
     /* ========== 共用动画 ========== */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(12px); }
@@ -277,21 +158,17 @@ const HTML = `<!DOCTYPE html>
     /* ========== 响应式 ========== */
     @media (max-width: 768px) {
       .hero-inner { padding: 36px 32px; }
-      .tools-inner { padding: 22px 24px; }
       .name  { font-size: 2.5rem; }
       .tagline { font-size: 0.95rem; margin-bottom: 2.2rem; }
       .btn   { padding: 0.65rem 2.2rem; font-size: 0.9rem; }
       .links { gap: 1.4rem; margin-top: 2.5rem; }
-      .scroll-hint { bottom: 28px; }
     }
 
     @media (max-width: 480px) {
       .hero-inner { padding: 28px 22px; border-radius: 12px; }
-      .tools-inner { padding: 18px 16px; border-radius: 12px; gap: 10px; }
       .name  { font-size: 2rem; }
       .tagline { font-size: 0.85rem; }
       .links { gap: 1rem; }
-      .tool-item { padding: 0.45rem 1.1rem; font-size: 0.78rem; }
     }
   </style>
 </head>
@@ -308,22 +185,6 @@ const HTML = `<!DOCTYPE html>
       </div>
     </div>
 
-    <div class="scroll-hint" onclick="document.querySelector('.tools').scrollIntoView({behavior:'smooth'})">
-      <span>工具</span>
-      <div class="scroll-arrow"></div>
-    </div>
-  </section>
-
-  <section class="tools" id="tools">
-    <div class="tools-card">
-      <div class="tools-inner">
-        <span class="tools-label">工具</span>
-        <span class="tool-item">JSON 格式化 <span class="soon-badge">即将上线</span></span>
-        <span class="tool-item">Base64 编解码 <span class="soon-badge">即将上线</span></span>
-        <span class="tool-item">二维码生成 <span class="soon-badge">即将上线</span></span>
-        <span class="tool-item">时间戳转换 <span class="soon-badge">即将上线</span></span>
-      </div>
-    </div>
   </section>
 
   <script>
